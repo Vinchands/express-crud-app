@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+</head>
+<body>
+    <% if (locals.user) { %>
+        <form action="/users/<%= user.id %>/edit?_method=PUT" method="POST">
+            <pre style="white-space: pre">
+                <!-- <input type="hidden" name="_method" value="PUT"> -->
+                Name  : <input type="text" name="name" value="<%= user.name %>"><br>
+                Email : <input type="email" name="email" value="<%= user.email %>"><br>
+                Job   : <input type="text" name="job" value="<%= user.job %>"><br>
+                <input type="submit" value="Submit">
+            </pre>
+        </form>
+    <% } else { %>
+        <form action="/users/create" method="POST">
+            <pre style="white-space: pre">
+                Name  : <input type="text" name="name"><br>
+                Email : <input type="email" name="email"><br>
+                Job   : <input type="text" name="job"><br>
+                <input type="submit" value="Submit">
+            </pre>
+        </form>
+    <% } %>
+</body>
+</html>

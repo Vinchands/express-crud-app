@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+</head>
+<body>
+    <h1>Users List</h1>
+    <hr>
+    <a href="users/create">
+        <button>Add User</button>
+    </a>
+    <br><br>
+    <table border="1">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <% if (users.length !== 0) { %>
+                <% for (let user of users) { %>
+                    <tr>
+                        <td><%= user.id %></td>
+                        <td><%= user.name %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.job %></td>
+                        <td style="display: flex;">
+                            <a href="/users/<%= user.id %>/edit">
+                                <button>Edit</button>
+                            </a>
+                            <form action="/users/<%= user.id %>/delete?_method=DELETE" method="POST">
+                                <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
+            <% } else { %>
+                <tr>
+                    <td colspan="5">No users found.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>
